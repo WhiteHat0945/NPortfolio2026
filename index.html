@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarek Melgar | Legal Office Administration Portfolio</title>
+    <style>
+        /* CSS Variables for Shadcn/Glassmorphism Minimalist Palette */
+        :root {
+            --bg-base: #09090b; /* Zinc 950 */
+            --text-primary: #fafafa; /* Zinc 50 */
+            --text-secondary: #a1a1aa; /* Zinc 400 */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.06);
+            --accent: #ffffff;
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Background for Glassmorphism Effect */
+        .ambient-light {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .light-1 {
+            width: 400px;
+            height: 400px;
+            background: #ffffff;
+            top: -100px;
+            left: -100px;
+        }
+        .light-2 {
+            width: 500px;
+            height: 500px;
+            background: #a1a1aa;
+            bottom: -200px;
+            right: -100px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+        }
+
+        /* Navigation - Frosted Glass */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        /* Glass Cards (Shadcn aesthetic) */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero Section */
+        #home {
+            text-align: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .profile-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            border: 1px solid var(--glass-border);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #18181b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts for Bento Box Feel */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .bento-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .bento-item:hover {
+            background: var(--glass-hover);
+        }
+
+        .bento-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+        }
+
+        ul.minimal-list {
+            list-style: none;
+        }
+
+        ul.minimal-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        ul.minimal-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-primary);
+        }
+
+        /* Text formatting */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .nav-container {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills & Work</a>
+            <a href="#vision">Vision</a>
+            <a href="#research">Research</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <div class="profile-wrapper">
+                <div class="profile-img">[Formal Photo]</div>
+            </div>
+            <div class="badge">Program: BS Office Administration – Legal Office</div>
+            <h1 class="hero-title">Jarek Melgar</h1>
+            <p class="hero-subtitle">Aspiring Legal Office Administrator | Focused on Operational Excellence & Ethical Service</p>
+        </section>
+
+        <section id="about" class="glass-card">
+            <div class="section-header">
+                <h2>Professional Profile</h2>
+            </div>
+            <div class="prose">
+                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Professional Biography</h3>
+                <p>I am a dedicated Office Administration student at the Polytechnic University of the Philippines, Taguig Campus, specializing in Legal Office procedures. With a background that spans administrative support, UI/UX design, and management, I bring a unique blend of organizational precision and digital fluency to the modern office environment. I am committed to upholding the highest standards of confidentiality and ethics, ensuring that every document and process contributes to a seamless legal workflow.</p>
+                
+                <h3 style="margin-top: 2rem; margin-bottom: 0.5rem;">Career Goals</h3>
+                <p>My immediate goal is to complete my 300-hour administrative internship within a high-standard government or legal agency, applying my skills in records management and document formatting. Long-term, I aim to become a Senior Administrative Officer in a legal firm or corporate legal department, where I can bridge the gap between traditional legal documentation and modern digital efficiency.</p>
+            </div>
+        </section>
+
+        <section id="education" class="glass-card">
+            <div class="section-header">
+                <h2>Educational Background</h2>
+            </div>
+            
+            <div class="bento-item" style="margin-bottom: 2rem;">
+                <h3>Degree Program</h3>
+                <p style="color: var(--text-primary); margin-bottom: 0;"><strong>Polytechnic University of the Philippines, Taguig Campus</strong></p>
+                <p style="margin-bottom: 0;">Bachelor of Science in Office Administration (Major in Legal Office)</p>
+                <p style="font-size: 0.875rem;">2024 – Present (Current 2nd Year Student)</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-item">
+                    <h3>Extra-Curricular Highlights</h3>
+                    <ul class="minimal-list">
+                        <li><strong>Deputy Officer</strong>, PAPOA COMELEC (2026)</li>
+                        <li><strong>Finalist Champion</strong>, Chess Club (2024)<br>
+                        <span style="font-size: 0.85rem;">Demonstrates strategic thinking and focus.</span></li>
+                    </ul>
+                </div>
+                <div class="bento-item">
+                    <h3>Work Immersion & Experience</h3>
+                    <ul class="minimal-list">
+                        <li><strong>Administrative Intern</strong><br>
+                        St. Theodore School Inc. (80 Hours, 2024)</li>
+                        <li><strong>Manager</strong><br>
+                        Psisimo Bakery (2022 - 2023)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="glass-card">
+            <div class="section-header">
+                <h2>Core Competencies & Portfolio</h2>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-item">
+                    <h3>Administrative</h3>
+                    <ul class="minimal-list">
+                        <li>Records Management</li>
+                        <li>Appointment Scheduling</li>
+                        <li>Minute-taking</li>
+                        <li>Office Correspondence</li>
+                    </ul>
+                </div>
+                <div class="bento-item">
+                    <h3>Legal Office</h3>
+                    <ul class="minimal-list">
+                        <li>Legal Document Formatting</li>
+                        <li>Case File Organization</li>
+                        <li>Basic Legal Research</li>
+                        <li>Confidentiality Protocols</li>
+                    </ul>
+                </div>
+                <div class="bento-item">
+                    <h3>Digital & Research</h3>
+                    <ul class="minimal-list">
+                        <li>Advanced Internet Research</li>
+                        <li>UI/UX Design & Formatting</li>
+                        <li>Browser Security Awareness</li>
+                        <li>MS Office & Google Workspace</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Work Samples</h3>
+            <div class="bento-grid">
+                <a href="#" class="bento-item" style="text-align: center; display: block;">
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Legal Memorandum</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 0;">[View Document]</p>
+                </a>
+                <a href="#" class="bento-item" style="text-align: center; display: block;">
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Affidavit Layout</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 0;">[View Template]</p>
+                </a>
+                <a href="#" class="bento-item" style="text-align: center; display: block;">
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Business Letter</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 0;">[View Draft]</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="vision" class="glass-card">
+            <div class="section-header">
+                <h2>My Vision</h2>
+            </div>
+            <div class="prose">
+                <h3 style="margin-bottom: 1rem;">The Modern Legal Landscape: Where I See Myself</h3>
+                <p>My vision for my professional future is rooted in environments that demand a high degree of order, ethical integrity, and technological integration. After completing my degree, I see myself working in National Government Agencies (such as DOST or the Department of Justice) or reputable private law firms that handle complex litigation and corporate services.</p>
+                <p>I am particularly drawn to environments that are currently undergoing digital transformation. In these spaces, I can apply my dual expertise in office administration and digital design to ensure that filing systems are not only compliant with legal standards but also intuitively organized for the modern age. I see myself as the "backbone" of the office—the person who ensures that every case file is accounted for, every deadline is met, and every client interaction is handled with professional grace.</p>
+                <p>Working in these high-volume environments appeals to my ability to remain calm under pressure—a skill I sharpened during my time as a manager and an administrative intern. Ultimately, I want to be in an office where "efficiency" is not just a buzzword, but a daily practice that protects the rights and interests of the people we serve.</p>
+            </div>
+        </section>
+
+        <section id="research" class="glass-card">
+            <div class="section-header">
+                <h2>Internet Research as a Subject</h2>
+            </div>
+            <div class="prose">
+                <h3 style="margin-bottom: 1rem;">The Critical Role of Internet Research in Legal Administration</h3>
+                <p>In the modern business landscape, particularly within the legal sector, information is the most valuable currency. Internet research is no longer just a peripheral skill; it is a fundamental pillar of competent Office Administration. In a legal office, the stakes of research are significantly higher than in general business. An incorrect citation, an outdated ruling, or a failure to verify a corporate entity can lead to legal malpractice or significant financial loss.</p>
+                <p>For a Business Administration student specializing in Legal Office work, internet research serves three primary purposes: verification, compliance, and efficiency. First, verification allows us to use deep web portals and government databases—such as court registries or the SEC—to ensure the legitimacy of the parties involved in a case. Second, compliance ensures that our administrative actions align with current laws and regional regulations, which are frequently updated online.</p>
+                <p>Furthermore, internet research involves a high degree of digital literacy and browser security awareness. In a legal setting, we handle sensitive, non-public information. Knowing how to navigate the web safely and distinguish between credible legal databases and unreliable sources is a matter of professional ethics. It is our responsibility to ensure that the data we provide to lawyers and executives is not only relevant but also secure.</p>
+                <p>Ultimately, mastering internet research allows an Administrative Officer to move from being a simple data-entry clerk to a strategic partner. By efficiently navigating the vast digital landscape to find precise precedents or company profiles, we save the firm time and provide the groundwork for successful legal outcomes. In our program, this subject teaches us that the quality of our work is only as good as the information we base it on.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jarek Melgar. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80, // Adjust for sticky nav height
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
